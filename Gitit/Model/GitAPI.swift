@@ -20,6 +20,5 @@ func getPublicGit(username:String) async throws -> Profile {
         fatalError("Error while fetching data")
     }
     let decoded = try JSONDecoder().decode(Profile.self, from: data)
-//    let result : Profile = decoded.self
     return decoded
 }
