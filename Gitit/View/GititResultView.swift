@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GititResultView: View {
     
-    @State var userReq: String = ""
+    @State var userReq: String
     @State private var reqResult = Profile(
         login: "", avatar_url: "")
     
@@ -17,14 +17,12 @@ struct GititResultView: View {
         ScrollView {
             VStack{
                 TextField("User", text: $userReq)
-                Button {
-                    Task{
-                        reqResult = try await getPublicGit(username: userReq)
+                    .onSubmit {
+                        Task{
+                            reqResult = try await getPublicGit(username: userReq)
+                        }
                     }
-                } label: {
-                    Text("Recherche")
-                }
-                Text(reqResult.login ?? "erreur")
+                Text(reqResult.login ?? "Error getting username from GitHub.")
             }
         }
     }
@@ -32,6 +30,6 @@ struct GititResultView: View {
 
 struct GititResultView_Previews: PreviewProvider {
     static var previews: some View {
-        GititResultView(userReq: "z888e")
+        GititResultView(userReq: "")
     }
 }
