@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GititResultView: View {
     
+    //#todo date format + clip avatar
     @State var userReq: String
     @State private var reqResult = Profile(
         login: "", avatar_url: "", html_url: "", name:"", public_repos: 0)
